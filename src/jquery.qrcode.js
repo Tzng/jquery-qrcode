@@ -55,8 +55,10 @@
 
 			// create table element
 			var $table = $('<table></table>')
-				.css("width", options.width + "px")
-				.css("height", options.height + "px")
+				// remvoe tables width and height, to fix scale bug when use very small size.
+				// maybe table size is smaller then option specified, but it work correct at least.
+				//.css("width", options.width + "px")
+				//.css("height", options.height + "px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
 				.css('background-color', options.background);
@@ -64,12 +66,8 @@
 			// compute tileS percentage
 			var tileW = Math.floor(options.width / qrcode.getModuleCount());
 			var tileH = Math.floor(options.height / qrcode.getModuleCount());
-			if (tileH == 0) tileH = 1;
-			if (tileW == 0) tileW = 1;
-			// remvoe tables width and height, to fix scale bug when use very small size.
-			// maybe table size is smaller then option specified, but it work correct at least.
-			$table.css("width", "");
-			$table.css("height", "");
+			if (tileH <= 0) tileH = 1;
+			if (tileW <= 0) tileW = 1;
 
 			// draw in the table
 			for (var row = 0; row < qrcode.getModuleCount(); row++) {
