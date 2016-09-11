@@ -1,7 +1,6 @@
 PROJECT_NAME=jquery-qrcode
 
-all:
-
+all:build
 server:
 	python -m SimpleHTTPServer
 
@@ -12,10 +11,7 @@ minify:
 	head -2 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
 	cat src/qrcode.js		>> /tmp/jquery.qrcode.tmp.js
 	tail -n +3 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
-	curl --data-urlencode "js_code@/tmp/jquery.qrcode.tmp.js" 	\
-		-d "output_format=text&output_info=compiled_code&compilation_level=SIMPLE_OPTIMIZATIONS" \
-		http://closure-compiler.appspot.com/compile		\
-		> jquery.qrcode.min.js
+	node ../UglifyJS/bin/uglifyjs -o jquery.qrcode.min.js /tmp/jquery.qrcode.tmp.js 
 
 homepage_build:
 	pandoc -A ~/.pandoc.header.html -s README.md -o index.html
