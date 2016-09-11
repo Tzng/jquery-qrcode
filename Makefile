@@ -11,7 +11,9 @@ minify:
 	head -2 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
 	cat src/qrcode.js		>> /tmp/jquery.qrcode.tmp.js
 	tail -n +3 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
-	node ../UglifyJS/bin/uglifyjs -o jquery.qrcode.min.js /tmp/jquery.qrcode.tmp.js 
+	node ../UglifyJS/bin/uglifyjs -o /tmp/jquery.qrcode.min.js /tmp/jquery.qrcode.tmp.js
+	cat  License.txt > jquery.qrcode.min.js
+	cat /tmp/jquery.qrcode.min.js >> jquery.qrcode.min.js
 
 homepage_build:
 	pandoc -A ~/.pandoc.header.html -s README.md -o index.html
