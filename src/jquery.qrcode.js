@@ -25,13 +25,17 @@
 
 			// create canvas element
 			var canvas = document.createElement('canvas');
-			canvas.width = options.width;
-			canvas.height = options.height;
+            canvas.style.width =  options.width  + "px";
+            canvas.style.height =  options.width  + "px";
+            // to support retina screen.
+            var scaleRate = window.devicePixelRatio || 1;
+			canvas.width = options.width * scaleRate;
+			canvas.height = options.height * scaleRate;
 			var ctx = canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
-			var tileW = options.width / qrcode.getModuleCount();
-			var tileH = options.height / qrcode.getModuleCount();
+			var tileW = options.width *  scaleRate / qrcode.getModuleCount();
+			var tileH = options.height *  scaleRate / qrcode.getModuleCount();
 
 			// draw in the canvas
 			for (var row = 0; row < qrcode.getModuleCount(); row++) {
@@ -64,8 +68,9 @@
 				.css('background-color', options.background);
 
 			// compute tileS percentage
-			var tileW = Math.floor(options.width / qrcode.getModuleCount());
-			var tileH = Math.floor(options.height / qrcode.getModuleCount());
+            var scaleRate = window.devicePixelRatio || 1;
+			var tileW = Math.floor(options.width * scaleRate / qrcode.getModuleCount())/scaleRate;
+			var tileH = Math.floor(options.height * scaleRate/ qrcode.getModuleCount())/scaleRate;
 			if (tileH <= 0) tileH = 1;
 			if (tileW <= 0) tileW = 1;
 
