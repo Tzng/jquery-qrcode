@@ -4,7 +4,8 @@
 <title>basic example</title>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
 --><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
@@ -15,13 +16,22 @@
 <p>Render in canvas</p>
 <div id="qrcodeCanvas"></div>
 <script>
+    var size = 200;
+    var text = 'http://persion.95522.com.cn/tkseed/MTIzNDU2Nzg5MDEyMzQ1Ng';
+    var cl = 1;
 	//jQuery('#qrcode').qrcode("this plugin is great");
 	jQuery('#qrcodeTable').qrcode({
 		render	: "table",
-		text	: "http://jetienne.com"
+        width   : size,
+        height:size,
+		text	: text,
+        correctLevel: cl,
 	});	
 	jQuery('#qrcodeCanvas').qrcode({
-		text	: "http://jetienne.com"
+        width   : size,
+        height:size,
+		text	: text,
+        correctLevel: cl,
 	});	
 </script>
 
